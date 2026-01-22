@@ -27,33 +27,32 @@ with st.sidebar:
     """)
     
     st.info("Built with FastAPI, Streamlit, and Gemini AI")
-    
-    if st.button("🔄 Reset"):
-        st.rerun()
 
 # Input Section
 st.subheader("🔗 Input Details")
 
 repo_url = st.text_input(
     "GitHub Repository URL",
-    value="https://github.com/facebook/react",
+    placeholder="https://github.com/owner/repo",
     help="Example: https://github.com/facebook/react"
 )
 
 issue_number = st.text_input(
     "Issue Number",
-    value="1",
+    placeholder="e.g. 123",
     help="Enter a numeric issue ID"
 )
 
-# Validate Inputs
+# Analyze Button
 if st.button("🚀 Analyze Issue"):
+
+    # --- POPUP STYLE VALIDATION ---
     if "github.com" not in repo_url:
-        st.error("❌ Please enter a valid GitHub repository URL.")
+        st.toast("❌ Please enter a valid GitHub repository URL", icon="⚠️")
         st.stop()
 
     if not issue_number.isdigit():
-        st.error("❌ Issue number must be a number.")
+        st.toast("❌ Issue number must be a numeric value", icon="⚠️")
         st.stop()
 
     try:
@@ -70,7 +69,7 @@ if st.button("🚀 Analyze Issue"):
         validated_json, error = validate_ai_json(ai_response)
 
         if error:
-            st.error("⚠️ AI output was invalid")
+            st.error(" AI output was invalid")
             st.text(ai_response)
 
         else:
@@ -98,6 +97,17 @@ if st.button("🚀 Analyze Issue"):
             st.markdown("**📈 Potential Impact**")
             st.write(validated_json["potential_impact"])
 
+            # ---------- AI EXPLANATION POPUP ----------
+            with st.expander(" How the AI Generated This Report"):
+                st.write("""
+                The AI agent:
+                - Reads the issue title, description, and comments  
+                - Classifies the issue type  
+                - Estimates priority  
+                - Suggests labels  
+                - Evaluates user impact  
+                """)
+
             # Raw JSON Section
             st.subheader("🧾 Raw JSON Output")
             st.code(json.dumps(validated_json, indent=4), language="json")
@@ -109,7 +119,7 @@ if st.button("🚀 Analyze Issue"):
                 mime="application/json"
             )
 
-            # Feedback Popup
+            # How to Use Popup
             with st.expander("💡 How to Use This Output"):
                 st.write("""
                 You can use this JSON to:
