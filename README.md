@@ -60,7 +60,7 @@ prioritize issues using Large Language Models (LLMs).
 ------------------------------------------------------------------------
 ##  Live Demo
 
-Try the app here:https://ai-app-issue-assistant-ecanr67fkqpaotubrcv5us.streamlit.app
+Try the app here:https://ai-app-issue-assistant-ecanr67fkqpaotubrcv5us.streamlit.app/
 
 ------------------------------------------------------------------------
 
@@ -172,6 +172,7 @@ streamlit run app.py
 ##  Author
 
 **Kavya Shree**
+
 
 
 
