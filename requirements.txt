@@ -4,3 +4,5 @@ google-genai
 fastapi
 uvicorn
 streamlit
+pip install google-genai
+
