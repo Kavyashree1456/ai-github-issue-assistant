@@ -85,8 +85,18 @@ source venv/bin/activate   # On Windows: venv\Scripts\activate
 ``` bash
 pip install -r requirements.txt
 ```
+### 4 ## API Key Setup (Required)
 
+This project uses Google's Gemini API.
 
+1. Create a `.env` file in the project root
+2. Add:
+GEMINI_API_KEY=your_api_key_here
+GITHUB_TOKEN=your_token
+3. Save the file and run the app
+
+### Security Note:
+For security and usage-control reasons, this project requires users to provide their own API key. The key is stored locally using environment variables and is never committed to the repository.
 
 ## ▶ Running the Application
 
@@ -162,6 +172,7 @@ streamlit run app.py
 ##  Author
 
 **Kavya Shree**
+
 
 
 
